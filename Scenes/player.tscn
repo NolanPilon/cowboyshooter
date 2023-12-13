@@ -1,0 +1,330 @@
+[gd_scene load_steps=22 format=3 uid="uid://bkxpnmfqbl510"]
+
+[ext_resource type="Script" path="res://Scripts/player_controller.gd" id="1_yqn83"]
+[ext_resource type="ArrayMesh" uid="uid://co0wj7jcnoil7" path="res://Models/Meshes/hat_mesh.res" id="2_wpq2l"]
+[ext_resource type="PackedScene" uid="uid://dbm0fj3tri65w" path="res://Models/Blend/player_mesh.tscn" id="3_5xxd2"]
+[ext_resource type="Script" path="res://Scripts/gun.gd" id="4_8nnvs"]
+[ext_resource type="ArrayMesh" uid="uid://c0h0ia71jci8v" path="res://Models/Meshes/revolver_mesh.res" id="4_e1ugb"]
+[ext_resource type="Texture2D" uid="uid://dtv8vjd3tdtqo" path="res://Sprites/reticle.png" id="6_8dpcb"]
+[ext_resource type="AudioStream" uid="uid://dl4lbcufbyc4c" path="res://Sounds/revolver_shot.wav" id="6_l0d06"]
+[ext_resource type="Script" path="res://Scripts/throw_dynamite.gd" id="7_uqwp7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gc37r"]
+resource_name = "Body"
+radius = 0.4
+height = 2.07184
+
+[sub_resource type="Curve" id="Curve_ba500"]
+_data = [Vector2(0.00649349, 1), 0.0, 0.0, 0, 0, Vector2(0.974026, 0.389474), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dhfsi"]
+curve = SubResource("Curve_ba500")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sitq2"]
+lifetime_randomness = 0.4
+emission_shape = 3
+emission_box_extents = Vector3(1, 5, 1)
+direction = Vector3(0, -5, 0)
+spread = 20.0
+gravity = Vector3(1, 2, 1)
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_dhfsi")
+turbulence_noise_scale = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u06fw"]
+transparency = 1
+albedo_color = Color(0.807843, 0.807843, 0.807843, 0.596078)
+
+[sub_resource type="SphereMesh" id="SphereMesh_5uyyo"]
+material = SubResource("StandardMaterial3D_u06fw")
+radius = 0.05
+height = 0.1
+radial_segments = 16
+rings = 16
+
+[sub_resource type="Animation" id="Animation_mtxod"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RotationHelper/Camera3D/Revolver:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.7797, -0.284571, -0.903074)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RotationHelper/Camera3D/Revolver:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(3.17637e-21, -1.5708, -1.5708)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RotationHelper:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5qajj"]
+resource_name = "idle"
+length = 2.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RotationHelper/Camera3D/Revolver:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(3.17637e-21, -1.5708, -1.5708), Vector3(-5.58103e-16, -1.5708, -1.36834)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RotationHelper/Camera3D/Revolver:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0.7797, -0.284571, -0.903074), Vector3(0.7797, -0.444247, -0.903074)]
+}
+
+[sub_resource type="Animation" id="Animation_64d4y"]
+resource_name = "reload_pistol"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RotationHelper/Camera3D/Revolver:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.61, 1, 1.01, 1.42),
+"transitions": PackedFloat32Array(1, 1, 1, 0, 1, 0, 1, 1),
+"update": 0,
+"values": [Vector3(0, -1.5708, -1.5708), Vector3(3.17637e-21, -1.5708, -1.5708), Vector3(0, -1.5708, 1.5708), Vector3(0, -1.5708, 4.71239), Vector3(0, -1.5708, -1.5708), Vector3(0, -1.5708, 4.71239), Vector3(0, -1.5708, -1.5708), Vector3(0, -1.5708, 4.71239)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RotationHelper/Camera3D/Revolver:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 1.42, 1.66),
+"transitions": PackedFloat32Array(2, 2, 0.5, 0.5),
+"update": 0,
+"values": [Vector3(0.7797, -0.284571, -0.903074), Vector3(0.7797, -0.504094, -0.553405), Vector3(0.7797, -0.504094, -0.553405), Vector3(0.7797, -0.284571, -0.903074)]
+}
+
+[sub_resource type="Animation" id="Animation_0254k"]
+resource_name = "run"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RotationHelper/Camera3D/Revolver:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(0.5, 2, 0.5, 2),
+"update": 0,
+"values": [Vector3(3.17637e-21, -1.5708, -1.5708), Vector3(3.17637e-21, -1.5708, -1.5708), Vector3(3.17637e-21, -1.5708, -1.5708), Vector3(3.17637e-21, -1.5708, -1.5708)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RotationHelper/Camera3D/Revolver:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(0.5, 2, 0.5, 2),
+"update": 0,
+"values": [Vector3(0.7797, -0.284571, -0.903074), Vector3(0.714985, -0.240438, -0.903074), Vector3(0.7797, -0.284571, -0.903074), Vector3(0.82744, -0.277951, -0.903074)]
+}
+
+[sub_resource type="Animation" id="Animation_q77w2"]
+resource_name = "shoot"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RotationHelper/Camera3D/Revolver:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.7797, -0.284571, -0.903074), Vector3(0.7797, -0.284571, -0.664308), Vector3(0.7797, -0.284571, -0.903074)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RotationHelper/Camera3D/Revolver:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(3.17637e-21, -1.5708, -1.5708), Vector3(0, -1.5708, -2.17817), Vector3(3.17637e-21, -1.5708, -1.5708)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RotationHelper:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.0785398, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6eknt"]
+_data = {
+"RESET": SubResource("Animation_mtxod"),
+"idle": SubResource("Animation_5qajj"),
+"reload_pistol": SubResource("Animation_64d4y"),
+"run": SubResource("Animation_0254k"),
+"shoot": SubResource("Animation_q77w2")
+}
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_h4cfr"]
+properties/0/path = NodePath(".:rotation")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+properties/2/path = NodePath("RotationHelper/Camera3D:rotation")
+properties/2/spawn = true
+properties/2/sync = true
+properties/2/watch = false
+properties/3/path = NodePath("RotationHelper:rotation")
+properties/3/spawn = true
+properties/3/sync = true
+properties/3/watch = false
+properties/4/path = NodePath("RotationHelper/Camera3D/Revolver:rotation")
+properties/4/spawn = true
+properties/4/sync = true
+properties/4/watch = false
+properties/5/path = NodePath("RotationHelper/Camera3D/Revolver:position")
+properties/5/spawn = true
+properties/5/sync = true
+properties/5/watch = false
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+collision_layer = 3
+script = ExtResource("1_yqn83")
+
+[node name="Hat" type="MeshInstance3D" parent="."]
+transform = Transform3D(-5.24537e-09, 0, 0.2, 0, 0.2, 0, -0.12, 0, -8.74228e-09, 0.0201129, 1.2474, -0.0111949)
+layers = 2
+mesh = ExtResource("2_wpq2l")
+
+[node name="BodyHitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02241, 0.0422938, 0)
+shape = SubResource("CapsuleShape3D_gc37r")
+
+[node name="PlayerMesh" parent="BodyHitbox" instance=ExtResource("3_5xxd2")]
+transform = Transform3D(-0.35, 0, -3.0598e-08, 0, 0.35, 0, 3.0598e-08, 0, -0.35, 0.00449863, -1.31607, 0)
+
+[node name="RotationHelper" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="RotationHelper"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, 0, 0.718066, 0.338864)
+near = 0.04
+
+[node name="Revolver" type="MeshInstance3D" parent="RotationHelper/Camera3D"]
+transform = Transform3D(1.04835e-12, -2.89599e-07, -0.08, -0.08, -2.89599e-07, -2.5411e-22, -2.89599e-07, 0.08, -2.89599e-07, 0.7797, -0.284571, -0.903074)
+layers = 2
+mesh = ExtResource("4_e1ugb")
+script = ExtResource("4_8nnvs")
+
+[node name="RevolverSmoke" type="GPUParticles3D" parent="RotationHelper/Camera3D/Revolver"]
+transform = Transform3D(1, 1.27329e-11, 2.60209e-18, -1.27329e-11, 1, -1.27329e-11, 1.73472e-18, 1.27329e-11, 1, -0.602032, -9.92088, 0.0766592)
+emitting = false
+amount = 32
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_sitq2")
+draw_pass_1 = SubResource("SphereMesh_5uyyo")
+
+[node name="FireSound" type="AudioStreamPlayer3D" parent="RotationHelper/Camera3D/Revolver"]
+transform = Transform3D(12.5, 0, 1.38778e-17, 0, 12.5, -3.63798e-12, -2.77556e-17, 3.63798e-12, 12.5, 0, 3.48091e-05, 9.64825)
+stream = ExtResource("6_l0d06")
+volume_db = -20.0
+max_polyphony = 3
+
+[node name="DynamiteThrow" type="Node3D" parent="RotationHelper/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.321279, 0, -1.4)
+script = ExtResource("7_uqwp7")
+
+[node name="Crosshair" type="TextureRect" parent="RotationHelper/Camera3D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("6_8dpcb")
+expand_mode = 5
+stretch_mode = 3
+
+[node name="ShootRay" type="RayCast3D" parent="RotationHelper/Camera3D"]
+transform = Transform3D(1.04835e-12, -2.896e-07, -0.08, -0.08, -2.896e-07, -3.95333e-18, -2.896e-07, 0.08, -2.896e-07, 0, 0, -1.16234)
+target_position = Vector3(0, -800, 0)
+collision_mask = 3
+debug_shape_custom_color = Color(0.792157, 0.368627, 0.768627, 1)
+debug_shape_thickness = 4
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6eknt")
+}
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h4cfr")
+
+[node name="DisableClientMeshVisibility" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="DisableClientMeshVisibility" to="." method="_on_disable_mesh_visibility_timeout"]

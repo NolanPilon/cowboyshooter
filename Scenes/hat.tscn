@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjjbqw4d6yjii"]
+
+[ext_resource type="PackedScene" uid="uid://covce8w4db2f0" path="res://Models/Blend/hat.blend" id="1_j8u0n"]
+
+[node name="hat" instance=ExtResource("1_j8u0n")]
+
+[node name="Cube" parent="." index="0"]
+layers = 4

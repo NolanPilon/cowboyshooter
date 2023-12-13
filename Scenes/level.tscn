@@ -1,0 +1,106 @@
+[gd_scene load_steps=15 format=3 uid="uid://c4wkxr1feq4q5"]
+
+[ext_resource type="PackedScene" uid="uid://dcyt5bqt8njb5" path="res://Models/Environment/level.blend" id="1_xhury"]
+[ext_resource type="ArrayMesh" uid="uid://be1j8dia4k3ni" path="res://Models/Meshes/crate_mesh.res" id="2_70fir"]
+[ext_resource type="PackedScene" uid="uid://d0gdkaxgd8r6o" path="res://Scenes/Decoration/bank_building.tscn" id="3_yfyf7"]
+[ext_resource type="PackedScene" uid="uid://dl1gpfvqoifbt" path="res://Scenes/Decoration/trough.tscn" id="4_nv0b8"]
+[ext_resource type="PackedScene" uid="uid://b8110qw6514px" path="res://Scenes/Decoration/hitch.tscn" id="5_yr1fk"]
+[ext_resource type="PackedScene" uid="uid://qf1tvmgt0vcx" path="res://Scenes/Decoration/sheriff.tscn" id="6_gp0xl"]
+[ext_resource type="PackedScene" uid="uid://d0mfrdjnlbole" path="res://Scenes/Decoration/pan.tscn" id="7_gfl2t"]
+[ext_resource type="PackedScene" uid="uid://dfcxcemtuhly6" path="res://Scenes/Decoration/wheel.tscn" id="8_rfgm7"]
+[ext_resource type="PackedScene" uid="uid://cf2kio2qx17ec" path="res://Scenes/Decoration/well.tscn" id="9_2qumj"]
+[ext_resource type="PackedScene" uid="uid://c4ly38e5xna4e" path="res://Scenes/Decoration/windmill.tscn" id="10_2hdy4"]
+[ext_resource type="PackedScene" uid="uid://d2x7e6sd4ufne" path="res://Scenes/Decoration/barrel.tscn" id="11_77jbm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_np62h"]
+resource_name = "Material"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.933594, 0.8125, 0.503906, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_drb3l"]
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2.00001, 2.00001, 2),
+"format": 4097,
+"index_count": 36,
+"index_data": PackedByteArray(0, 0, 6, 0, 4, 0, 0, 0, 2, 0, 6, 0, 3, 0, 6, 0, 2, 0, 3, 0, 7, 0, 6, 0, 7, 0, 4, 0, 6, 0, 7, 0, 5, 0, 4, 0, 5, 0, 3, 0, 1, 0, 5, 0, 7, 0, 3, 0, 1, 0, 2, 0, 0, 0, 1, 0, 3, 0, 2, 0, 5, 0, 0, 0, 4, 0, 5, 0, 1, 0, 0, 0),
+"name": "Material",
+"primitive": 3,
+"vertex_count": 8,
+"vertex_data": PackedByteArray(0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_t6oao"]
+resource_name = "level-579a258d674b6313381925d51067095e_Cube"
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2.00001, 2.00001, 2),
+"attribute_data": PackedByteArray(0, 0, 32, 63, 0, 0, 0, 63, 0, 0, 32, 63, 0, 0, 0, 63, 0, 0, 32, 63, 0, 0, 0, 63, 0, 0, 192, 62, 0, 0, 0, 63, 0, 0, 192, 62, 0, 0, 0, 63, 0, 0, 192, 62, 0, 0, 0, 63, 0, 0, 32, 63, 0, 0, 128, 62, 0, 0, 32, 63, 0, 0, 128, 62, 0, 0, 32, 63, 0, 0, 128, 62, 0, 0, 192, 62, 0, 0, 128, 62, 0, 0, 192, 62, 0, 0, 128, 62, 0, 0, 192, 62, 0, 0, 128, 62, 0, 0, 32, 63, 0, 0, 64, 63, 0, 0, 32, 63, 0, 0, 64, 63, 0, 0, 96, 63, 0, 0, 0, 63, 0, 0, 0, 62, 0, 0, 0, 63, 0, 0, 192, 62, 0, 0, 64, 63, 0, 0, 192, 62, 0, 0, 64, 63, 0, 0, 32, 63, 0, 0, 0, 0, 0, 0, 32, 63, 0, 0, 128, 63, 0, 0, 96, 63, 0, 0, 128, 62, 0, 0, 0, 62, 0, 0, 128, 62, 0, 0, 192, 62, 0, 0, 0, 0, 0, 0, 192, 62, 0, 0, 128, 63),
+"format": 4119,
+"index_count": 36,
+"index_data": PackedByteArray(1, 0, 20, 0, 14, 0, 1, 0, 7, 0, 20, 0, 10, 0, 18, 0, 6, 0, 10, 0, 22, 0, 18, 0, 23, 0, 12, 0, 19, 0, 23, 0, 16, 0, 12, 0, 15, 0, 9, 0, 3, 0, 15, 0, 21, 0, 9, 0, 5, 0, 8, 0, 2, 0, 5, 0, 11, 0, 8, 0, 17, 0, 0, 0, 13, 0, 17, 0, 4, 0, 0, 0),
+"material": SubResource("StandardMaterial3D_np62h"),
+"name": "Material",
+"primitive": 3,
+"vertex_count": 24,
+"vertex_data": PackedByteArray(0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 255, 255, 255, 255, 255, 127, 255, 255, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 255, 127, 255, 255, 0, 0, 255, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 255, 255, 255, 127, 255, 127, 255, 255, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 255, 127, 0, 0, 255, 255, 255, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 255, 255, 255, 255, 255, 127, 255, 255, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 255, 255, 255, 127, 255, 127, 255, 255, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 255, 127, 255, 127, 255, 127, 255, 255, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 255, 127, 255, 255, 0, 0, 255, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 255, 255, 255, 127, 255, 127, 255, 255, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 255, 127, 0, 0, 255, 255, 255, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 255, 127, 255, 127, 255, 127, 255, 255, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 255, 255, 255, 127, 255, 127, 255, 255, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 255, 127, 255, 127, 255, 255, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 255, 255, 255, 255, 255, 127, 255, 255, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 255, 127, 255, 255, 0, 0, 255, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 255, 127, 0, 0, 255, 255, 255, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 255, 127, 255, 127, 255, 255, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 255, 255, 255, 255, 255, 127, 255, 255, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 255, 127, 255, 127, 255, 127, 255, 255, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 255, 127, 255, 127, 255, 255, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 255, 127, 255, 255, 0, 0, 255, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 255, 127, 0, 0, 255, 255, 255, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 255, 127, 255, 127, 255, 127, 255, 255, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 255, 127, 255, 127, 255, 255)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_drb3l")
+
+[node name="level" instance=ExtResource("1_xhury")]
+
+[node name="ground" parent="." index="0"]
+mesh = SubResource("ArrayMesh_t6oao")
+
+[node name="crate" parent="." index="1"]
+transform = Transform3D(0.907134, 0, 0, 0, 0.907134, 0, 0, 0, 0.907134, -2.77427, 1.61654, -14.8995)
+mesh = ExtResource("2_70fir")
+
+[node name="crate_001" parent="." index="2"]
+transform = Transform3D(0.907134, 0, 0, 0, 0.907134, 0, 0, 0, 0.907134, 9.35901, 1.61654, -7.17689)
+mesh = ExtResource("2_70fir")
+
+[node name="crate_002" parent="." index="3"]
+transform = Transform3D(0.907134, 0, 0, 0, 0.907134, 0, 0, 0, 0.907134, -0.949742, 1.61654, 7.55741)
+mesh = ExtResource("2_70fir")
+
+[node name="crate_003" parent="." index="4"]
+transform = Transform3D(0.907134, 0, 0, 0, 0.907134, 0, 0, 0, 0.907134, 7.16107, 1.61654, 15.0181)
+mesh = ExtResource("2_70fir")
+
+[node name="bank" parent="." index="5" instance=ExtResource("3_yfyf7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7379, 1.12691, 15.4851)
+
+[node name="trough" parent="." index="6" instance=ExtResource("4_nv0b8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.33944, 0.667858, 18.0321)
+
+[node name="hitch" parent="." index="7" instance=ExtResource("5_yr1fk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.17769, 0.577468, 10.9718)
+
+[node name="sheriff" parent="." index="8" instance=ExtResource("6_gp0xl")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -10.9239, 0.538441, -1.85747)
+
+[node name="pan" parent="." index="9" instance=ExtResource("7_gfl2t")]
+transform = Transform3D(1, 0, 0, 0, -0.83147, 0.55557, 0, -0.55557, -0.83147, -5.20161, 1.19901, 19.8009)
+
+[node name="pan2" parent="." index="10" instance=ExtResource("7_gfl2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.07956, 0.702636, 6.73931)
+
+[node name="wheel" parent="." index="11" instance=ExtResource("8_rfgm7")]
+transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, -6.3599, 1.7646, 4.63935)
+
+[node name="well" parent="." index="12" instance=ExtResource("9_2qumj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.50941, 0.963262, 2.15679)
+
+[node name="windmill" parent="." index="13" instance=ExtResource("10_2hdy4")]
+transform = Transform3D(0.165719, 0, -0.986173, 0, 1, 0, 0.986173, 0, 0.165719, 11.9095, 0.70941, 9.94863)
+
+[node name="barrel" parent="." index="14" instance=ExtResource("11_77jbm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.75754, 0.76166, 11.22)
+
+[node name="barrel3" parent="." index="15" instance=ExtResource("11_77jbm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.03029, 0.76166, -6.89282)
+
+[node name="barrel2" parent="." index="16" instance=ExtResource("11_77jbm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0829, 0.76166, 11.22)

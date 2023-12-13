@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctgwhbty58ao7"]
+
+[ext_resource type="FontFile" uid="uid://iqirkws52jts" path="res://Fonts/Crang.ttf" id="1_k41ud"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1pud3"]
+font = ExtResource("1_k41ud")
+font_size = 32
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="Ammo" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 71.0
+offset_top = -80.0
+offset_right = 147.0
+offset_bottom = -44.0
+grow_vertical = 0
+text = "6/6"
+label_settings = SubResource("LabelSettings_1pud3")
+vertical_alignment = 1
