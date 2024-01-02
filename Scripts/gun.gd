@@ -3,9 +3,10 @@ extends Node3D
 signal ammo_changed(ammo_value)
 
 @onready var animator = $"../../../Animator"
-@onready var revolver_smoke = $RevolverSmoke
 @onready var fire_sound = $FireSound
 @onready var shoot_ray = $"../ShootRay"
+@onready var flash_timer = $MuzzleFlash/FlashTimer
+@onready var muzzle_flash = $MuzzleFlash
 
 const MAX_AMMO = 6
 const REVOLER_DAMAGE = 25
@@ -27,9 +28,9 @@ func _input(event):
 func _play_shoot_effects():
 	animator.stop()
 	animator.play("shoot");
+	muzzle_flash.visible = true
+	flash_timer.start(0.1)
 	fire_sound.play()
-	revolver_smoke.restart()
-	revolver_smoke.emitting = true
 
 func _check_raycast():
 	if shoot_ray.is_colliding():
@@ -53,3 +54,5 @@ func _reload():
 	curr_ammo = MAX_AMMO
 	ammo_changed.emit(curr_ammo)
 	
+func _on_flash_timer_timeout():
+	muzzle_flash.visible = false

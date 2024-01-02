@@ -1,33 +1,66 @@
-[gd_scene load_steps=14 format=3 uid="uid://b8ysdckdfmi4"]
+[gd_scene load_steps=18 format=3 uid="uid://b8ysdckdfmi4"]
 
 [ext_resource type="Script" path="res://Scripts/world_setup.gd" id="1_7jt0s"]
+[ext_resource type="Shader" path="res://Shaders/sky.gdshader" id="2_i5blb"]
 [ext_resource type="FontFile" uid="uid://iqirkws52jts" path="res://Fonts/Crang.ttf" id="3_fk470"]
 [ext_resource type="Script" path="res://Scripts/ui_manager.gd" id="3_go60c"]
-[ext_resource type="PackedScene" uid="uid://c4wkxr1feq4q5" path="res://Scenes/level.tscn" id="4_y7h7v"]
-[ext_resource type="PackedScene" uid="uid://dycqjvy8lo2fx" path="res://Scenes/target.tscn" id="5_tom0m"]
+[ext_resource type="PackedScene" uid="uid://dlfi0cswhkb4c" path="res://Scenes/Maps/dl_town.tscn" id="5_i4ec0"]
 
-[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_5tl84"]
-turbidity = 0.0
-ground_color = Color(0.705882, 0.376471, 0.203922, 1)
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5rlhp"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yfych"]
+width = 1024
+height = 1024
+seamless = true
+noise = SubResource("FastNoiseLite_5rlhp")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_g1xxt"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_38chb"]
+width = 1024
+height = 1024
+seamless = true
+noise = SubResource("FastNoiseLite_g1xxt")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_50n06"]
+shader = ExtResource("2_i5blb")
+shader_parameter/sky_top_color = Color(0.623529, 0.356863, 0.407843, 1)
+shader_parameter/sky_horizon_color = Color(0.937255, 0.580392, 0.282353, 1)
+shader_parameter/sky_curve = 0.27991
+shader_parameter/sky_energy = 1.0
+shader_parameter/sky_cover_modulate = Color(1, 1, 1, 1)
+shader_parameter/ground_bottom_color = Color(0.980392, 0.996078, 0.521569, 1)
+shader_parameter/ground_horizon_color = Color(0.980392, 0.996078, 0.521569, 1)
+shader_parameter/ground_curve = 0.02
+shader_parameter/ground_energy = 1.0
+shader_parameter/sun_angle_max = 0.523599
+shader_parameter/sun_curve = 0.15
+shader_parameter/cloud_direction = Vector2(-1, 1)
+shader_parameter/cloud_direction2 = Vector2(1, -1)
+shader_parameter/cloud_scale = Vector2(0.05, 0.05)
+shader_parameter/cloud_distance = 0.02
+shader_parameter/cloud_speed = 0.15
+shader_parameter/cloud_speed2 = 0.15
+shader_parameter/cloud_texture = SubResource("NoiseTexture2D_yfych")
+shader_parameter/cloud_texture2 = SubResource("NoiseTexture2D_38chb")
 
 [sub_resource type="Sky" id="Sky_7sg5j"]
-sky_material = SubResource("PhysicalSkyMaterial_5tl84")
+sky_material = SubResource("ShaderMaterial_50n06")
+process_mode = 1
 
 [sub_resource type="Environment" id="Environment_ovwmq"]
 resource_local_to_scene = true
 background_mode = 2
 background_color = Color(1, 1, 1, 1)
 sky = SubResource("Sky_7sg5j")
-ambient_light_source = 2
 ambient_light_color = Color(0.964706, 0.972549, 0.917647, 1)
-ambient_light_energy = 0.2
-tonemap_exposure = 1.1
+ambient_light_sky_contribution = 0.4
+ambient_light_energy = 0.6
 ssr_depth_tolerance = 21.81
 ssao_radius = 4.0
 ssao_intensity = 5.0
 ssao_detail = 1.0
 ssao_sharpness = 0.0
-ssil_enabled = true
 ssil_radius = 2.0
 ssil_intensity = 2.0
 ssil_sharpness = 0.0
@@ -49,7 +82,6 @@ adjustment_contrast = 0.9
 adjustment_saturation = 1.2
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_yqlyn"]
-exposure_multiplier = 1.5
 dof_blur_far_distance = 20.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_mp0ep"]
@@ -87,7 +119,7 @@ shadow_size = 2
 shadow_color = Color(0, 0, 0, 1)
 
 [node name="World" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.9, -3.59575)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.9, -3.59575)
 script = ExtResource("1_7jt0s")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -95,7 +127,7 @@ environment = SubResource("Environment_ovwmq")
 camera_attributes = SubResource("CameraAttributesPractical_yqlyn")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.382043, -0.813947, 0.437646, -0.264261, 0.550013, 0.792245, -0.885556, 0.187019, -0.425223, 14, 12.5453, 18.4459)
+transform = Transform3D(-0.382043, -0.813947, 0.437645, -0.264261, 0.550013, 0.792245, -0.885556, 0.187019, -0.425223, 14, 18.5453, 18.4459)
 layers = 3
 light_color = Color(0.972549, 0.988235, 0.858824, 1)
 light_energy = 1.2
@@ -104,7 +136,6 @@ shadow_bias = 0.06
 shadow_normal_bias = 1.0
 shadow_opacity = 0.8
 shadow_blur = 1.5
-directional_shadow_mode = 0
 directional_shadow_split_1 = 0.2
 directional_shadow_fade_start = 0.85
 directional_shadow_max_distance = 70.0
@@ -217,18 +248,20 @@ text = "6/6"
 label_settings = SubResource("LabelSettings_jp7i1")
 vertical_alignment = 1
 
-[node name="level" parent="." instance=ExtResource("4_y7h7v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.21261, -3.35817, 5.76229)
-
-[node name="target" parent="level" instance=ExtResource("5_tom0m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41331, 3.58073, -16.3647)
-
-[node name="target2" parent="level" instance=ExtResource("5_tom0m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.32504, 3.58073, -8.91644)
-
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://Scenes/player.tscn")
 spawn_path = NodePath("..")
+
+[node name="SpawnPoints" type="Node" parent="."]
+
+[node name="HostSpawn" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05481, 14.9885, 26.7363)
+
+[node name="ClientSpawn" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -0.909858, 15.962, -11.8556)
+
+[node name="dl_town" parent="." instance=ExtResource("5_i4ec0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23922, 11.2981, 9.4614)
 
 [connection signal="pressed" from="UI/FrameCounter/MultiplayerMenu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="UI/FrameCounter/MultiplayerMenu/MarginContainer/VBoxContainer/Join" to="." method="_on_join_pressed"]

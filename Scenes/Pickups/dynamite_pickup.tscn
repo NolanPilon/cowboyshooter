@@ -1,6 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://wj23c054aqqs"]
+[gd_scene load_steps=9 format=3 uid="uid://cn5d1fa7ufhf1"]
 
-[ext_resource type="Script" path="res://Scripts/dynamite_explode.gd" id="1_pw352"]
+[ext_resource type="Script" path="res://Scripts/dynamite_pickup.gd" id="1_m6heu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_opgn7"]
 resource_name = "Black.001"
@@ -29,7 +29,7 @@ cull_mode = 2
 vertex_color_use_as_albedo = true
 albedo_color = Color(0, 0, 0, 1)
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_rgbbm"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_vtbl2"]
 _surfaces = [{
 "aabb": AABB(-6.42479, -1, -1, 7.42479, 11.5244, 11.124),
 "format": 4097,
@@ -62,7 +62,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_x5jvt"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_4swsd"]
 resource_name = "dynamite-9ff0564a43e0ab1403516ad07c299c59_Cylinder_003"
 _surfaces = [{
 "aabb": AABB(-6.42479, -1, -1, 7.42479, 11.5244, 11.124),
@@ -101,78 +101,22 @@ _surfaces = [{
 "vertex_data": PackedByteArray(113, 208, 161, 192, 190, 206, 96, 194, 42, 197, 238, 193, 234, 121, 111, 129, 189, 247, 231, 190, 113, 208, 161, 192, 190, 206, 96, 194, 42, 197, 238, 193, 200, 207, 145, 129, 67, 83, 66, 67, 221, 50, 15, 65, 5, 28, 99, 194, 62, 133, 232, 193, 208, 69, 177, 128, 255, 255, 255, 63, 221, 50, 15, 65, 5, 28, 99, 194, 62, 133, 232, 193, 234, 121, 111, 129, 51, 245, 150, 189, 234, 218, 167, 192, 29, 26, 35, 194, 173, 198, 239, 193, 234, 121, 111, 129, 228, 248, 129, 192, 234, 218, 167, 192, 29, 26, 35, 194, 173, 198, 239, 193, 200, 207, 145, 129, 41, 83, 32, 67, 189, 197, 16, 65, 37, 160, 34, 194, 199, 142, 234, 193, 208, 69, 177, 128, 255, 255, 255, 63, 189, 197, 16, 65, 37, 160, 34, 194, 199, 142, 234, 193, 234, 121, 111, 129, 32, 248, 26, 191, 28, 135, 236, 65, 123, 13, 108, 194, 156, 207, 61, 193, 2, 0, 120, 172, 255, 255, 255, 191, 28, 135, 236, 65, 123, 13, 108, 194, 156, 207, 61, 193, 208, 69, 177, 128, 255, 255, 255, 63, 28, 135, 236, 65, 201, 240, 38, 194, 156, 207, 61, 193, 2, 0, 120, 172, 255, 255, 255, 191, 28, 135, 236, 65, 201, 240, 38, 194, 156, 207, 61, 193, 208, 69, 177, 128, 255, 255, 255, 63, 137, 79, 167, 65, 16, 90, 103, 194, 100, 89, 140, 64, 2, 0, 120, 172, 255, 255, 255, 191, 137, 79, 167, 65, 16, 90, 103, 194, 100, 89, 140, 64, 69, 0, 220, 32, 255, 255, 255, 191, 252, 87, 166, 65, 121, 6, 39, 194, 84, 235, 147, 64, 2, 0, 120, 172, 255, 255, 255, 191, 252, 87, 166, 65, 121, 6, 39, 194, 84, 235, 147, 64, 69, 0, 220, 32, 255, 255, 255, 191, 50, 118, 16, 192, 147, 231, 102, 194, 66, 109, 74, 65, 69, 0, 220, 32, 255, 255, 255, 191, 50, 118, 16, 192, 147, 231, 102, 194, 66, 109, 74, 65, 143, 255, 197, 68, 255, 255, 255, 191, 197, 93, 22, 192, 9, 232, 37, 194, 146, 82, 70, 65, 69, 0, 220, 32, 255, 255, 255, 191, 197, 93, 22, 192, 9, 232, 37, 194, 146, 82, 70, 65, 143, 255, 197, 68, 255, 255, 255, 191, 232, 96, 74, 193, 220, 185, 103, 194, 0, 58, 240, 62, 143, 255, 197, 68, 255, 255, 255, 191, 232, 96, 74, 193, 220, 185, 103, 194, 0, 58, 240, 62, 113, 244, 250, 128, 255, 255, 255, 63, 136, 6, 75, 193, 1, 143, 36, 194, 0, 86, 168, 62, 143, 255, 197, 68, 255, 255, 255, 191, 136, 6, 75, 193, 1, 143, 36, 194, 0, 86, 168, 62, 113, 244, 250, 128, 255, 255, 255, 63, 9, 60, 43, 193, 112, 29, 100, 194, 113, 183, 160, 193, 200, 207, 145, 129, 50, 83, 43, 67, 9, 60, 43, 193, 112, 29, 100, 194, 113, 183, 160, 193, 113, 244, 250, 128, 255, 255, 255, 63, 31, 93, 46, 193, 137, 37, 38, 194, 4, 200, 162, 193, 200, 207, 145, 129, 24, 83, 9, 67, 31, 93, 46, 193, 137, 37, 38, 194, 4, 200, 162, 193, 113, 244, 250, 128, 255, 255, 255, 63, 113, 208, 161, 192, 218, 177, 216, 193, 43, 197, 238, 193, 234, 121, 111, 129, 189, 247, 231, 190, 113, 208, 161, 192, 218, 177, 216, 193, 43, 197, 238, 193, 200, 207, 145, 129, 67, 83, 66, 67, 221, 50, 15, 65, 102, 76, 221, 193, 63, 133, 232, 193, 208, 69, 177, 128, 255, 255, 255, 63, 221, 50, 15, 65, 102, 76, 221, 193, 63, 133, 232, 193, 234, 121, 111, 129, 51, 245, 150, 189, 234, 218, 167, 192, 48, 145, 58, 193, 175, 198, 239, 193, 234, 121, 111, 129, 228, 248, 129, 192, 234, 218, 167, 192, 48, 145, 58, 193, 175, 198, 239, 193, 200, 207, 145, 129, 41, 83, 32, 67, 189, 197, 16, 65, 80, 169, 56, 193, 201, 142, 234, 193, 208, 69, 177, 128, 255, 255, 255, 63, 189, 197, 16, 65, 80, 169, 56, 193, 201, 142, 234, 193, 234, 121, 111, 129, 32, 248, 26, 191, 28, 135, 236, 65, 82, 47, 239, 193, 162, 207, 61, 193, 2, 0, 120, 172, 255, 255, 255, 191, 28, 135, 236, 65, 82, 47, 239, 193, 162, 207, 61, 193, 208, 69, 177, 128, 255, 255, 255, 63, 28, 135, 236, 65, 220, 235, 73, 193, 160, 207, 61, 193, 2, 0, 120, 172, 255, 255, 255, 191, 28, 135, 236, 65, 220, 235, 73, 193, 160, 207, 61, 193, 208, 69, 177, 128, 255, 255, 255, 63, 137, 79, 167, 65, 126, 200, 229, 193, 92, 89, 140, 64, 2, 0, 120, 172, 255, 255, 255, 191, 137, 79, 167, 65, 126, 200, 229, 193, 92, 89, 140, 64, 69, 0, 220, 32, 255, 255, 255, 191, 252, 87, 166, 65, 156, 66, 74, 193, 76, 235, 147, 64, 2, 0, 120, 172, 255, 255, 255, 191, 252, 87, 166, 65, 156, 66, 74, 193, 76, 235, 147, 64, 69, 0, 220, 32, 255, 255, 255, 191, 50, 118, 16, 192, 132, 227, 228, 193, 62, 109, 74, 65, 69, 0, 220, 32, 255, 255, 255, 191, 50, 118, 16, 192, 132, 227, 228, 193, 62, 109, 74, 65, 143, 255, 197, 68, 255, 255, 255, 191, 197, 93, 22, 192, 220, 200, 69, 193, 142, 82, 70, 65, 69, 0, 220, 32, 255, 255, 255, 191, 197, 93, 22, 192, 220, 200, 69, 193, 142, 82, 70, 65, 143, 255, 197, 68, 255, 255, 255, 191, 232, 96, 74, 193, 22, 136, 230, 193, 128, 57, 240, 62, 143, 255, 197, 68, 255, 255, 255, 191, 232, 96, 74, 193, 22, 136, 230, 193, 128, 57, 240, 62, 113, 244, 250, 128, 255, 255, 255, 63, 136, 6, 75, 193, 192, 100, 64, 193, 128, 85, 168, 62, 143, 255, 197, 68, 255, 255, 255, 191, 136, 6, 75, 193, 192, 100, 64, 193, 128, 85, 168, 62, 113, 244, 250, 128, 255, 255, 255, 63, 9, 60, 43, 193, 62, 79, 223, 193, 114, 183, 160, 193, 200, 207, 145, 129, 50, 83, 43, 67, 9, 60, 43, 193, 62, 79, 223, 193, 114, 183, 160, 193, 113, 244, 250, 128, 255, 255, 255, 63, 31, 93, 46, 193, 224, 190, 70, 193, 4, 200, 162, 193, 200, 207, 145, 129, 24, 83, 9, 67, 31, 93, 46, 193, 224, 190, 70, 193, 4, 200, 162, 193, 113, 244, 250, 128, 255, 255, 255, 63)
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_rgbbm")
+shadow_mesh = SubResource("ArrayMesh_vtbl2")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_yanw3"]
-size = Vector3(0.5, 1, 0.5)
+[sub_resource type="SphereShape3D" id="SphereShape3D_68siy"]
+radius = 69.0
 
-[sub_resource type="Gradient" id="Gradient_ok68k"]
-offsets = PackedFloat32Array(0, 0.536232)
-colors = PackedColorArray(1, 1, 1, 1, 0.205117, 0.205117, 0.205117, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_2y2rp"]
-gradient = SubResource("Gradient_ok68k")
-
-[sub_resource type="Curve" id="Curve_s6mq0"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_e4epq"]
-curve = SubResource("Curve_s6mq0")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v1p8o"]
-emission_shape = 1
-emission_sphere_radius = 1.0
-direction = Vector3(0, 0, 0)
-spread = 180.0
-gravity = Vector3(0, 5.8, 0)
-initial_velocity_min = 15.0
-initial_velocity_max = 25.0
-scale_curve = SubResource("CurveTexture_e4epq")
-color = Color(0.929412, 0.588235, 0.262745, 1)
-color_ramp = SubResource("GradientTexture1D_2y2rp")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ncop"]
-vertex_color_use_as_albedo = true
-
-[sub_resource type="SphereMesh" id="SphereMesh_0ouo1"]
-material = SubResource("StandardMaterial3D_1ncop")
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_fprp6"]
-radius = 7.32472
-
-[node name="Dynamite" type="RigidBody3D" groups=["dynamite_group"]]
-collision_layer = 3
-script = ExtResource("1_pw352")
+[node name="dynamite_pickup" type="Node3D"]
+script = ExtResource("1_m6heu")
 
 [node name="DynamiteMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.015, 0, 0, 0, 0.015, 0, 0, 0, 0.015, -0.114121, 0.490186, 0.143977)
-mesh = SubResource("ArrayMesh_x5jvt")
+transform = Transform3D(0.0122546, 0.00865011, 0, -0.00865011, 0.0122546, 0, 0, 0, 0.015, 0.153344, 0.804313, 0.143977)
+mesh = SubResource("ArrayMesh_4swsd")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_yanw3")
+[node name="Area3D" type="Area3D" parent="DynamiteMesh"]
 
-[node name="Explosion" type="GPUParticles3D" parent="."]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
-emitting = false
-amount = 48
-lifetime = 0.5
-one_shot = true
-explosiveness = 1.0
-trail_lifetime = 0.01
-process_material = SubResource("ParticleProcessMaterial_v1p8o")
-draw_pass_1 = SubResource("SphereMesh_0ouo1")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DynamiteMesh/Area3D"]
+transform = Transform3D(1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0, 1, 9.75551, -28.6884, -6.66668)
+shape = SubResource("SphereShape3D_68siy")
 
-[node name="RemoveMeshTimer" type="Timer" parent="."]
-wait_time = 0.4
-
-[node name="ExplosionRadius" type="Area3D" parent="."]
-collision_layer = 3
-monitoring = false
-monitorable = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionRadius"]
-shape = SubResource("SphereShape3D_fprp6")
-
-[connection signal="timeout" from="RemoveMeshTimer" to="." method="_on_timer_timeout"]
-[connection signal="body_entered" from="ExplosionRadius" to="." method="_on_explosion_radius_body_entered"]
+[connection signal="body_entered" from="DynamiteMesh/Area3D" to="." method="_on_area_3d_body_entered"]

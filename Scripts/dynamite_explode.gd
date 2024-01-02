@@ -18,7 +18,7 @@ func _on_timer_timeout():
 	queue_free()
 
 func _on_explosion_radius_body_entered(body):
-	if body.is_in_group("player"):		
+	if body.is_in_group("player"):
 		body._take_damage(EXPLOSION_DAMAGE)
 	
 	if body.is_in_group("dynamite_group"):

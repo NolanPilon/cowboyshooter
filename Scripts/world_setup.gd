@@ -5,6 +5,8 @@ extends Node3D
 @onready var health_bar = $UI/Health/HealthBar
 @onready var ammo_ui = $UI/AmmoUI
 @onready var ammo_counter = $UI/AmmoUI/Ammo
+@onready var client_spawn = $SpawnPoints/ClientSpawn
+@onready var host_spawn = $SpawnPoints/HostSpawn
 
 
 const PLAYER = preload("res://Scenes/player.tscn")
@@ -34,12 +36,15 @@ func _on_join_pressed():
 func _add_player(peer_id):
 	var player = PLAYER.instantiate()
 	player.name = str(peer_id)
+	
 	add_child(player)
 	if player.is_multiplayer_authority():
 		player.health_changed.connect(_update_health_bar)
 		var player_weapon = player.find_child("Revolver")
 		player_weapon.ammo_changed.connect(_update_ammo_count)
-
+		player.position = host_spawn.position
+		player.spawn_point = host_spawn.position
+	
 func _update_health_bar(health_value):
 	health_bar.value = health_value
 
@@ -51,6 +56,9 @@ func _on_multiplayer_spawner_spawned(node):
 		node.health_changed.connect(_update_health_bar)
 		var node_weapon = node.find_child("Revolver")
 		node_weapon.ammo_changed.connect(_update_ammo_count)
+		node.position = client_spawn.position
+		node.spawn_point = client_spawn.position
+		node.rotate_y(-59.7) #Replace this at some point
 
 func _input(event):
 	if Input.is_action_just_pressed("ToggleFullScreen"):

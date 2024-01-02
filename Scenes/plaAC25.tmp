@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bkxpnmfqbl510"]
+[gd_scene load_steps=22 format=3 uid="uid://bkxpnmfqbl510"]
 
 [ext_resource type="Script" path="res://Scripts/player_controller.gd" id="1_yqn83"]
 [ext_resource type="ArrayMesh" uid="uid://co0wj7jcnoil7" path="res://Models/Meshes/hat_mesh.res" id="2_wpq2l"]
@@ -7,13 +7,43 @@
 [ext_resource type="ArrayMesh" uid="uid://c0h0ia71jci8v" path="res://Models/Meshes/revolver_mesh.res" id="4_e1ugb"]
 [ext_resource type="Texture2D" uid="uid://dtv8vjd3tdtqo" path="res://Sprites/reticle.png" id="6_8dpcb"]
 [ext_resource type="AudioStream" uid="uid://dl4lbcufbyc4c" path="res://Sounds/revolver_shot.wav" id="6_l0d06"]
-[ext_resource type="Texture2D" uid="uid://ctmkq5hof5ecl" path="res://Sprites/muzzle_flash.png" id="7_ngkph"]
 [ext_resource type="Script" path="res://Scripts/throw_dynamite.gd" id="7_uqwp7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gc37r"]
 resource_name = "Body"
 radius = 0.4
 height = 2.07184
+
+[sub_resource type="Curve" id="Curve_ba500"]
+_data = [Vector2(0.00649349, 1), 0.0, 0.0, 0, 0, Vector2(0.974026, 0.389474), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dhfsi"]
+curve = SubResource("Curve_ba500")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sitq2"]
+lifetime_randomness = 0.4
+emission_shape = 3
+emission_box_extents = Vector3(1, 5, 1)
+direction = Vector3(0, -5, 0)
+spread = 20.0
+gravity = Vector3(1, 2, 1)
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_dhfsi")
+turbulence_noise_scale = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u06fw"]
+transparency = 1
+albedo_color = Color(0.807843, 0.807843, 0.807843, 0.596078)
+
+[sub_resource type="SphereMesh" id="SphereMesh_5uyyo"]
+material = SubResource("StandardMaterial3D_u06fw")
+radius = 0.05
+height = 0.1
+radial_segments = 16
+rings = 16
 
 [sub_resource type="Animation" id="Animation_mtxod"]
 length = 0.001
@@ -244,19 +274,22 @@ layers = 2
 mesh = ExtResource("4_e1ugb")
 script = ExtResource("4_8nnvs")
 
+[node name="RevolverSmoke" type="GPUParticles3D" parent="RotationHelper/Camera3D/Revolver"]
+transform = Transform3D(1, 1.27329e-11, 2.60209e-18, -1.27329e-11, 1, -1.27329e-11, 1.73472e-18, 1.27329e-11, 1, -0.602032, -9.92088, 0.0766592)
+emitting = false
+amount = 32
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_sitq2")
+draw_pass_1 = SubResource("SphereMesh_5uyyo")
+
 [node name="FireSound" type="AudioStreamPlayer3D" parent="RotationHelper/Camera3D/Revolver"]
 transform = Transform3D(12.5, 0, 1.38778e-17, 0, 12.5, -3.63798e-12, -2.77556e-17, 3.63798e-12, 12.5, 0, 3.48091e-05, 9.64825)
 stream = ExtResource("6_l0d06")
 volume_db = -20.0
 max_polyphony = 3
-
-[node name="MuzzleFlash" type="Sprite3D" parent="RotationHelper/Camera3D/Revolver"]
-transform = Transform3D(1, 4.33681e-18, 0, 0, -4.37137e-08, -1, -6.07153e-18, 1, -4.37137e-08, -0.438665, -10.6039, -0.24834)
-visible = false
-texture = ExtResource("7_ngkph")
-
-[node name="FlashTimer" type="Timer" parent="RotationHelper/Camera3D/Revolver/MuzzleFlash"]
-wait_time = 0.1
 
 [node name="DynamiteThrow" type="Node3D" parent="RotationHelper/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.321279, 0, -1.4)
@@ -294,5 +327,4 @@ replication_config = SubResource("SceneReplicationConfig_h4cfr")
 wait_time = 0.1
 one_shot = true
 
-[connection signal="timeout" from="RotationHelper/Camera3D/Revolver/MuzzleFlash/FlashTimer" to="RotationHelper/Camera3D/Revolver" method="_on_flash_timer_timeout"]
 [connection signal="timeout" from="DisableClientMeshVisibility" to="." method="_on_disable_mesh_visibility_timeout"]
